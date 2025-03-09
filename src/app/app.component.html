@@ -1,25 +1,49 @@
 <main>
- <header>
-  <span class="title-page">
-    news of the world
-  </span>
-  <mat-form-field>
-    <input matInput type="search">
-    <button matSuffix mat-icon-button aria-label="Search">
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field>
- </header>
+  <header>
+    <span class="title-page">
+      news of the world
+    </span>
+    <mat-form-field>
+      <input matInput type="search" [(ngModel)]="searchValue" (input)="filterNews()">
+      <button matSuffix mat-icon-button aria-label="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </header>
 
- <div class="content">
-  <mat-card appearance="outlined" *ngFor="let article of newsArticles">
-    <mat-card-header>
-      <mat-card-title> {{ article.title }} </mat-card-title>
-      <mat-card-subtitle> {{article.author}} </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-button (click)="openDialog(article)">Learn More</button>
-    </mat-card-actions>
-  </mat-card>
- </div>
+  <!-- filters -->
+  <mat-toolbar>
+    <span>Filters:</span>
+
+    <!-- author Filter -->
+    <mat-form-field>
+      <mat-label>Author</mat-label>
+      <mat-select [(value)]="selectedAuthor" (selectionChange)="filterNews()">
+        <mat-option *ngFor="let author of authors" [value]="author">{{ author }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- sorting Dropdown -->
+    <mat-form-field>
+      <mat-label>Sort By</mat-label>
+      <mat-select [(value)]="selectedSort" (selectionChange)="onSortChange()">
+        <mat-option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-toolbar>
+
+  <!-- article card -->
+  <div class="content">
+    <mat-card appearance="outlined" *ngFor="let article of filteredNewsArticles">
+      <mat-card-header>
+        <mat-card-title> {{ article.title | slice:0:66 }} ... </mat-card-title>
+        <mat-card-subtitle> Author: {{article.author || 'Unknown'}} </mat-card-subtitle>
+        <mat-card-subtitle> {{article.publishedAt | date: 'dd/MM/yyyy HH:mm' }} </mat-card-subtitle>
+
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-button (click)="openDialog(article)">Read More</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </main>

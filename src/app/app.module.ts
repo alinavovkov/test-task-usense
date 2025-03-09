@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,17 +12,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DialogNewsCardComponent } from './components/dialog-news-card/dialog-news-card.component';
-import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogNewsCardComponent,
-    
+    DialogNewsCardComponent,  
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MatButtonModule,
     MatIconModule,
@@ -33,11 +35,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
-    MatDialogActions,
-    MatDialogClose,
-    MatDialogContent,
-    MatDialogTitle,
+    MatDialogModule,
     HttpClientModule,
+    MatSlideToggle,
+    MatToolbarModule,
+    MatSelectModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

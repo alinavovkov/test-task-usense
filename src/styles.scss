@@ -7,15 +7,14 @@
 html {
   @include mat.theme((
     color: (
-      theme-type: light,
+      theme-type: dark,
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
-
     ),
     typography: Roboto,
     density: 0,
   ));
 }/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%;  background-color: rgb(26, 26, 26);}
+html, body { height: 100%;  background-color: rgb(26, 26, 26); color: rgb(245, 245, 245);}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
